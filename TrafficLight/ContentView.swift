@@ -19,31 +19,34 @@ struct ContentView: View {
     @State private var greenOpacity: Double = 0.5
     
     var body: some View {
-        VStack {
-            TrafficLightView(color: .red)
-                .opacity(redOpacity)
-            TrafficLightView(color: .yellow)
-                .padding(.top, 16)
-                .opacity(yellowOpacity)
-            TrafficLightView(color: .green)
-                .padding(.top, 16)
-                .opacity(greenOpacity)
-            
-            Spacer()
-            
-            Button(action: switchTrafficLightButtonTapped) {
-                Text(buttonText)
-                    .font(.title)
+        Color.black
+            .ignoresSafeArea()
+            .overlay {
+                VStack {
+                    TrafficLightView(color: .red)
+                        .opacity(redOpacity)
+                    TrafficLightView(color: .yellow)
+                        .padding(.top, 16)
+                        .opacity(yellowOpacity)
+                    TrafficLightView(color: .green)
+                        .padding(.top, 16)
+                        .opacity(greenOpacity)
+                    
+                    Spacer()
+                    
+                    Button(action: switchTrafficLightButtonTapped) {
+                        Text(buttonText)
+                            .font(.title)
+                    }
+                    .padding()
+                    .frame(width: 150, height: 60)
+                    .background(.blue)
+                    .foregroundColor(.white)
+                    .clipShape(Capsule(style: .continuous))
+                    .overlay(Capsule(style: .continuous).stroke(Color.white, lineWidth: 4))
+                }
+                .padding(.bottom, 100)
             }
-                .padding()
-                .frame(width: 150, height: 60)
-                .background(.blue)
-                .foregroundColor(.white)
-                .clipShape(Capsule(style: .continuous))
-                .overlay(Capsule(style: .continuous).stroke(Color.white, lineWidth: 4))
-                
-        }
-        .padding(.bottom, 100)
     }
     
     private func switchTrafficLightButtonTapped() {
